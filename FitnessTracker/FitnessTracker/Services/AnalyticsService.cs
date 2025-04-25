@@ -24,6 +24,7 @@ namespace FitnessTracker.Services
         public static Dictionary<string, double> CaloriesByActivity =>
             _logs
                 .GroupBy(log => log.ActivityType)
-                .ToDictionary(g => g.Key, g => g.Sum(l => l.CaloriesBurned));
+               .ToDictionary(g => g.Key ?? "Unknown", g => g.Sum(x => x.CaloriesBurned));
+
     }
 }
