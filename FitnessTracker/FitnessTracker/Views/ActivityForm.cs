@@ -21,7 +21,7 @@ namespace FitnessTracker.Views
                 "Running", "Yoga", "Swimming", "Weightlifting", "Cycling", "Walking"
             });
             cmbActivityType.SelectedIndexChanged += cmbActivityType_SelectedIndexChanged;
-            btnLogActivity.Click += btnLogActivity_Click;
+            //btnLogActivity.Click += btnLogActivity_Click;
             btnBackToDashboard.Click += btnBackToDashboard_Click;
 
             // Initial visibility
@@ -39,7 +39,7 @@ namespace FitnessTracker.Views
             txtSteps.Visible = selected == "Walking";
             txtDistance.Visible = selected == "Running" || selected == "Cycling";
             txtElevation.Visible = selected == "Running";
-            txtDuration.Visible = selected != "Yoga";
+            txtDuration.Visible = selected == "Yoga";
         }
 
         private void btnLogActivity_Click(object? sender, EventArgs e)

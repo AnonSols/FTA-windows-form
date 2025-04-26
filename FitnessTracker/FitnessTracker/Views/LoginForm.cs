@@ -39,9 +39,10 @@ namespace FitnessTracker.Views
             if (UserService.Authenticate(username, password))
             {
                 MessageBox.Show("Login successful!");
-                this.Hide();
+                
                 var dashboard = new DashboardForm();
                 dashboard.Show();
+                this.Hide();
             }
             else
             {

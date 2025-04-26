@@ -6,25 +6,29 @@ namespace FitnessTracker.Services
 {
     public static class AnalyticsService
     {
-        private static readonly List<ActivityLog> _logs = new List<ActivityLog>();
+        public static int DailyCalorieGoal { get; private set; } = 2500; // default goal
+
+        private static List<ActivityLog> activityLogs = new List<ActivityLog>();
+
+        public static double TotalCaloriesBurned =>
+            activityLogs.Sum(a => a.CaloriesBurned);
+
+        public static Dictionary<string, double> CaloriesByActivity =>
+            activityLogs
+                .GroupBy(a => a.ActivityType)
+                .ToDictionary(g => g.Key!, g => g.Sum(a => a.CaloriesBurned));
 
         public static void AddLog(ActivityLog log)
         {
-            _logs.Add(log);
+            activityLogs.Add(log);
         }
 
-        public static List<ActivityLog> GetLogs()
+        public static List<ActivityLog> GetLogs() => activityLogs;
+
+        public static void SetGoal(int newGoal)
         {
-            return _logs;
+            DailyCalorieGoal = newGoal;
         }
-
-        public static double TotalCaloriesBurned =>
-            _logs.Sum(log => log.CaloriesBurned);
-
-        public static Dictionary<string, double> CaloriesByActivity =>
-            _logs
-                .GroupBy(log => log.ActivityType)
-               .ToDictionary(g => g.Key ?? "Unknown", g => g.Sum(x => x.CaloriesBurned));
-
     }
+
 }
