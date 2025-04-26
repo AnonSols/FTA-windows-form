@@ -39,7 +39,7 @@ namespace FitnessTracker.Views
             txtSteps.Visible = selected == "Walking";
             txtDistance.Visible = selected == "Running" || selected == "Cycling";
             txtElevation.Visible = selected == "Running";
-            txtDuration.Visible = selected == "Yoga";
+            txtDuration.Visible = selected == "Yoga" || selected == "Swimming" || selected == "Weightlifting";
         }
 
         private void btnLogActivity_Click(object? sender, EventArgs e)
@@ -116,9 +116,10 @@ namespace FitnessTracker.Views
 
         private void btnBackToDashboard_Click(object? sender, EventArgs e)
         {
-            this.Hide();
+           
             var dash = new DashboardForm(); 
             dash.Show();
+            this.Hide();
         }
     }
 }
